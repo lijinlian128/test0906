@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>计算器自动化测试报告</title>
+    <meta name="generator" content="HTMLTestRunner 0.8.2.2"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    
+<style type="text/css" media="screen">
+body        { font-family: Microsoft YaHei,Tahoma,arial,helvetica,sans-serif;padding: 20px; font-size: 80%; }
+table       { font-size: 100%; }
+
+/* -- heading ---------------------------------------------------------------------- */
+.heading {
+    margin-top: 0ex;
+    margin-bottom: 1ex;
+}
+
+.heading .description {
+    margin-top: 4ex;
+    margin-bottom: 6ex;
+}
+
+/* -- report ------------------------------------------------------------------------ */
+#total_row  { font-weight: bold; }
+.passCase   { color: #5cb85c; }
+.failCase   { color: #d9534f; font-weight: bold; }
+.errorCase  { color: #f0ad4e; font-weight: bold; }
+.hiddenRow  { display: none; }
+.testcase   { margin-left: 2em; }
+</style>
+
+</head>
+<body >
+<script language="javascript" type="text/javascript">
+output_list = Array();
+
+/*level 调整增加只显示通过用例的分类 --Findyou
+0:Summary //all hiddenRow
+1:Failed  //pt hiddenRow, ft none
+2:Pass    //pt none, ft hiddenRow
+3:All     //pt none, ft none
+*/
+function showCase(level) {
+    trs = document.getElementsByTagName("tr");
+    for (var i = 0; i < trs.length; i++) {
+        tr = trs[i];
+        id = tr.id;
+        if (id.substr(0,2) == 'ft') {
+            if (level == 2 || level == 0 ) {
+                tr.className = 'hiddenRow';
+            }
+            else {
+                tr.className = '';
+            }
+        }
+        if (id.substr(0,2) == 'pt') {
+            if (level < 2) {
+                tr.className = 'hiddenRow';
+            }
+            else {
+                tr.className = '';
+            }
+        }
+    }
+
+    //加入【详细】切换文字变化 --Findyou
+    detail_class=document.getElementsByClassName('detail');
+	//console.log(detail_class.length)
+	if (level == 3) {
+		for (var i = 0; i < detail_class.length; i++){
+			detail_class[i].innerHTML="收起"
+		}
+	}
+	else{
+			for (var i = 0; i < detail_class.length; i++){
+			detail_class[i].innerHTML="详细"
+		}
+	}
+}
+
+function showClassDetail(cid, count) {
+    var id_list = Array(count);
+    var toHide = 1;
+    for (var i = 0; i < count; i++) {
+        //ID修改 点 为 下划线 -Findyou
+        tid0 = 't' + cid.substr(1) + '_' + (i+1);
+        tid = 'f' + tid0;
+        tr = document.getElementById(tid);
+        if (!tr) {
+            tid = 'p' + tid0;
+            tr = document.getElementById(tid);
+        }
+        id_list[i] = tid;
+        if (tr.className) {
+            toHide = 0;
+        }
+    }
+    for (var i = 0; i < count; i++) {
+        tid = id_list[i];
+        //修改点击无法收起的BUG，加入【详细】切换文字变化 --Findyou
+        if (toHide) {
+            document.getElementById(tid).className = 'hiddenRow';
+            document.getElementById(cid).innerText = "详细"
+        }
+        else {
+            document.getElementById(tid).className = '';
+            document.getElementById(cid).innerText = "收起"
+        }
+    }
+}
+
+function html_escape(s) {
+    s = s.replace(/&/g,'&amp;');
+    s = s.replace(/</g,'&lt;');
+    s = s.replace(/>/g,'&gt;');
+    return s;
+}
+</script>
+<div class='heading'>
+<h1 style="font-family: Microsoft YaHei">计算器自动化测试报告</h1>
+<p class='attribute'><strong>测试人员 : </strong> 我是你爸爸</p>
+<p class='attribute'><strong>开始时间 : </strong> 2019-09-05 17:59:04</p>
+<p class='attribute'><strong>合计耗时 : </strong> 0:00:04.419808</p>
+<p class='attribute'><strong>测试结果 : </strong> 共 2，通过 1，失败 1，通过率= 50.00%</p>
+
+<p class='description'>计算器自动化测试项目详细描述</p>
+</div>
+
+
+
+<p id='show_detail_line'>
+<a class="btn btn-primary" href='javascript:showCase(0)'>概要{ 50.00% }</a>
+<a class="btn btn-danger" href='javascript:showCase(1)'>失败{ 1 }</a>
+<a class="btn btn-success" href='javascript:showCase(2)'>通过{ 1 }</a>
+<a class="btn btn-info" href='javascript:showCase(3)'>所有{ 2 }</a>
+</p>
+<table id='result_table' class="table table-condensed table-bordered table-hover">
+<colgroup>
+<col align='left' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+</colgroup>
+<tr id='header_row' class="text-center success" style="font-weight: bold;font-size: 14px;">
+    <td>用例集/测试用例</td>
+    <td>总计</td>
+    <td>通过</td>
+    <td>失败</td>
+    <td>错误</td>
+    <td>详细</td>
+</tr>
+
+<tr class='failClass warning'>
+    <td>add_account_tc.TestClass</td>
+    <td class="text-center">2</td>
+    <td class="text-center">1</td>
+    <td class="text-center">1</td>
+    <td class="text-center">0</td>
+    <td class="text-center"><a href="javascript:showClassDetail('c1',2)" class="detail" id='c1'>详细</a></td>
+</tr>
+
+<tr id='ft1_1' class='none'>
+    <td class='failCase'><div class='testcase'>test_fail001</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft1_1' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_1'>失败</button>
+    <div id='div_ft1_1' class="collapse">  -->
+
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft1_1' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft1_1'>失败</button>
+    <div id='div_ft1_1' class="collapse in">
+    <pre>
+    
+ft1_1: Traceback (most recent call last):
+  File "C:\20198月09\我的课程\API\api框架变形\stept6\scripts\add_account_tc.py", line 13, in test_fail001
+    self.checkTextData(result,'操作失败',200)
+  File "C:\20198月09\我的课程\API\api框架变形\stept6\Libs\Tools.py", line 18, in checkTextData
+    self.assertIn(expectValue,result.text)
+AssertionError: '操作失败' not found in '&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;\r\n&lt;html xmlns="http://www.w3.org/1999/xhtml"&gt; \r\n&lt;head&gt;\r\n&lt;meta name="renderer" content="webkit"&gt;\r\n&lt;meta name="Generator" /&gt;\r\n&lt;meta http-equiv="Content-Type" content="text/html; charset=utf-8" /&gt;\r\n&lt;title&gt;操作成功 - 提交成功，等待管理员审核 - p2p信贷&lt;/title&gt;\r\n&lt;link rel="icon" href="favicon.ico" type="/image/x-icon" /&gt;\r\n&lt;link rel="shortcut icon" href="favicon.ico" type="/image/x-icon" /&gt;\r\n&lt;meta name="keywords" content="p2p信贷—最大、最安全的网络借贷平台" /&gt;\r\n&lt;meta name="description" content="p2p信贷—最大、最安全的网络借贷平台" /&gt;\r\n&lt;link rel="stylesheet" type="text/css" href="http://localhost/public/runtime/statics/80935a6e94dcd362427efcefd64017a8.css" /&gt;\r\n&lt;script type="text/javascript"&gt;\r\nvar APP_ROOT = \'\';;\r\nvar LOADER_IMG = \'http://localhost/app/Tpl/new/images/lazy_loading.gif\';\r\nvar ERROR_IMG = \'http://localhost/app/Tpl/new/images/image_err.gif\';\r\nvar TMPL = \'http://localhost/app/Tpl/new\';\r\nvar send_span = 2000;\r\nvar to_send_msg = false;\r\nvar __LOGIN_KEY = "pOvnjCUmqEyByOfMRwmgjFtDtXNnsZcnNivIreJptGdygOvPeE";\r\nvar __HASH_KEY__ = "DAXyQLwMwOJeLckRvgvXooeodVIZsdvtFwyZrxlddBlqGRInOx";\r\n&lt;/script&gt;\r\n&lt;script type="text/javascript" src="/public/runtime/app/lang.js"&gt;&lt;/script&gt;\r\n&lt;script type="text/javascript" src="http://localhost/public/runtime/statics/0593744c3acd8d6fbb48eb63e45c6a43.js"&gt;&lt;/script&gt;\r\n\r\n&lt;!--[if lt IE 10]&gt;\r\n&lt;script type="text/javascript" src="http://localhost/app/Tpl/new/js/PIE.js"&gt;&lt;/script&gt;\r\n&lt;![endif]--&gt;\r\n&lt;script language="javascript"&gt;\r\n$(function() {\r\n    if (window.PIE) {\r\n        $(\'.bdr3,.bdr5,.user_info_d a,.main_adv_ctl li,.after_login .user_money A,.listbtn SPAN\').each(function() {\r\n            PIE.attach(this);\r\n        });\r\n    }\r\n});\r\n&lt;/script&gt;&lt;/head&gt;\r\n\r\n&lt;body&gt;\r\n&lt;div class="header" id="header"&gt;\r\n   &lt;!----&gt;\r\n&lt;div class="constr"&gt;\r\n\t&lt;div class="wrap"&gt;\r\n\t\t \t\t&lt;div class="app_down f_l" id="J_APP_DOWN"&gt;\r\n\t\t\t&lt;a href="http://localhost/public/images/qrcode/c0/ee0fb32c1f98189bbc76df0db4df3e12.png"&gt;&lt;i class="iconfont"&gt;&amp;#xe613;&lt;/i&gt;手机理财&lt;/a&gt;\r\n\t\t\t\r\n\t\t&lt;/div&gt;\r\n\t\t\t\t&lt;div class="f_r lh30"&gt;\r\n\t\t\t\r\n\t\t&lt;/div&gt;\t\r\n\t\t&lt;div class="f_r"&gt;\r\n\t\t\t&lt;ul class="right mt9"&gt;\r\n\t\t\t\t&lt;!-- &lt;li class="hover_a top_li"&gt;\r\n\t\t\t\t\t&lt;i class="iconfont"&gt;&amp;#xe614;&lt;/i&gt;\r\n\t\t\t\t\t官方QQ群\r\n\t\t\t\t&lt;/li&gt; --&gt;\r\n\t\t\t\t\t\t\t\t&lt;li class="hover_a top_li jcur " &gt;\r\n\t\t\t\t\t&lt;a href="http://localhost/public/images/qrcode/c4/4d74e1a20fa899ed60ee8bfa62ad954e.png" id="weixim"&gt;\r\n\t\t\t\t\t&lt;i class="iconfont"&gt;&amp;#xe614;&lt;/i&gt;\r\n\t\t\t\t\t微信\r\n\t\t\t\t\t&lt;/a&gt;\r\n\t\t\t\t&lt;/li&gt;\r\n\t\t\t\t\t\t\t\t&lt;li class="top_li"&gt;&lt;a href="/index.php?ctl=helpcenter"&gt;帮助中心&lt;/a&gt;&lt;/li&gt;\r\n\t\t\t\t&lt;li class=" top_li relative"&gt;\r\n\t\t\t\t\t&lt;div id="user_head_tip"&gt;\r\n\t\t\t\t\t\t\t&lt;span class="li li_no" id="J_account"&gt;\r\n\t\t&lt;span class="f14"&gt;您好，&lt;/span&gt;&lt;a href="/member.php?ctl=uc_center"&gt;admin01&lt;/a&gt;\r\n\t\t&lt;ul class="ui-nav-dropdown ui-nav-dropdown-account"&gt;\r\n        \t&lt;li class="ui-nav-dropdown-angle" style="_top: -13px;"&gt;&lt;span&gt;&lt;/span&gt;&lt;/li&gt;\r\n\t\t   \t&lt;li class="ui-nav-dropdown-item"&gt;\r\n\t\t\t   \t&lt;a href="/member.php?ctl=uc_msg" class="rrd-dimgray "&gt;\r\n\t\t\t   \t&lt;i class="iconfont pm new_pm "&gt;&amp;#xe630;&lt;/i&gt;\r\n\t\t\t\t 消息(1)&lt;/a&gt;\r\n\t\t   \t&lt;/li&gt;\r\n\t\t\t&lt;li class="ui-nav-dropdown-separator"&gt;&lt;/li&gt;\r\n          \t&lt;li class="ui-nav-dropdown-item"&gt;&lt;a class="rrd-dimgray" href="/member.php?ctl=uc_money&amp;act=incharge"&gt;充值&lt;/a&gt;&lt;/li&gt;\r\n          \t&lt;li class="ui-nav-dropdown-item"&gt;&lt;a class="rrd-dimgray" href="/member.php?ctl=uc_money&amp;act=bank"&gt;提现&lt;/a&gt;&lt;/li&gt;\r\n          \t&lt;li class="ui-nav-dropdown-separator"&gt;&lt;/li&gt;\r\n          \t&lt;li class="ui-nav-dropdown-item"&gt;&lt;a class="rrd-dimgray" href="/member.php?ctl=uc_money"&gt;资金管理&lt;/a&gt;&lt;/li&gt;\r\n          \t&lt;li class="ui-nav-dropdown-item"&gt;&lt;a class="rrd-dimgray" href="/member.php?ctl=uc_invest"&gt;投资管理&lt;/a&gt;&lt;/li&gt;\r\n          \t&lt;li class="ui-nav-dropdown-item"&gt;&lt;a class="rrd-dimgray" href="/member.php?ctl=uc_deal&amp;act=refund"&gt;借款管理&lt;/a&gt;&lt;/li&gt;\r\n            &lt;li class="ui-nav-dropdown-separator"&gt;&lt;/li&gt;\r\n            &lt;li class="ui-nav-dropdown-item"&gt;&lt;a class="rrd-dimgray" href="/index.php?ctl=licai&amp;act=uc_published_lc"&gt;我的理财&lt;/a&gt;&lt;/li&gt;\r\n            &lt;li class="ui-nav-dropdown-separator"&gt;&lt;/li&gt;\r\n          \t&lt;li class="ui-nav-dropdown-item"&gt;&lt;a class="rrd-dimgray" href="/index.php?ctl=user&amp;act=loginout"&gt;退出&lt;/a&gt;&lt;/li&gt;\r\n        &lt;/ul&gt;\r\n\t&lt;/span&gt;\r\n\t&lt;script type="text/javascript"&gt;\r\n\tvar acc_menu_hide = null;\r\n\tvar hide_menu = null;\r\n\tjQuery(function(){\r\n\t\t$("#J_account").hover(function(){\r\n\t\t\tclearTimeout(acc_menu_hide);\r\n\t\t\t$(this).addClass("li_hover");\r\n\t\t},function(){\r\n\t\t\tvar obj = $(this);\r\n\t\t\thide_menu = function(){\r\n\t\t\t\tobj.removeClass("li_hover");\r\n\t\t\t}\r\n\t\t\tacc_menu_hide = setTimeout(hide_menu,100);\r\n\t\t});\r\n\t});\r\n\t&lt;/script&gt;\r\n\t\t\t      &lt;/div&gt;\r\n\t\t\t    &lt;/li&gt;\r\n\t\t\t&lt;/ul&gt;\r\n\t\t&lt;/div&gt;\t\r\n\t&lt;/div&gt;\r\n&lt;/div&gt;\r\n&lt;!----&gt;\t&lt;div class="main_bars"&gt;\r\n\t\t&lt;div class="main_bar wrap"&gt;\t\r\n\t\t\t&lt;div class="logo mr15"&gt;\r\n\t\t\t\t&lt;a class="link f_l" href="/"&gt;\r\n\t\t\t\t\t\t\t\t\t\t&lt;span style=\'display:inline-block; width:210px; height:72px; background:url(http://localhost/public/attachment/201803/16/17/5aab899d9231b.png) no-repeat; _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src=http://localhost/public/attachment/201803/16/17/5aab899d9231b.png, sizingMethod=scale);_background-image:none;\' title=\'p2p信贷\'&gt;&lt;/span&gt;\t\t\t\t&lt;/a&gt;\r\n\t\t\t&lt;/div&gt;     \r\n\t\t\t&lt;!--加载菜单--&gt;\r\n\t\t\t&lt;ul class="main_nav"&gt;\r\n\t\t\t\t\t\t\t\t\t&lt;li class=" jcur ml5 bdr3 pr" rel=\'1\'&gt;\r\n\t\t\t\t\t\t&lt;a href="/index.php" target="" class="pr20"&gt;首页 &lt;i class="iconfont"&gt;&amp;#xe61c;&lt;/i&gt;&lt;/a&gt;\r\n\t\t\t\t\t\t                        &lt;div class="sub_main_nav ps hide"&gt;\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;a href="/index.php?ctl=aboutp2p"  target=""&gt;平台原理&lt;/a&gt;\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;a href="/index.php?ctl=aboutlaws"  target=""&gt;政策法规&lt;/a&gt;\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;a href="/index.php?ctl=aboutfee"  target=""&gt;费用&lt;/a&gt;\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;a href="/index.php?ctl=help&amp;id=1"  target=""&gt;关于我们&lt;/a&gt;\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;a href="/index.php?ctl=learn_activity"  target="_blank"&gt;理财体验金&lt;/a&gt;\r\n\t\t\t\t\t\t\t\t\t\t\t\t&lt;/div&gt;\r\n\t\t\t\t\t\t\t\t\t\t\t&lt;/li&gt;\r\n\t\t\t\t\t\t\t\t\t&lt;li class=" jcur ml5 bdr3 pr" rel=\'2\'&gt;\r\n\t\t\t\t\t\t&lt;a href="/index.php?ctl=deals&amp;select=1" target="" class="pr20"&gt;我要理财 &lt;i class="iconfont"&gt;&amp;#xe61c;&lt;/i&gt;&lt;/a&gt;\r\n\t\t\t\t\t\t                        &lt;div class="sub_main_nav ps hide"&gt;\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;a href="/index.php?ctl=deals"  target=""&gt;个人贷款&lt;/a&gt;\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;a href="/index.php?ctl=transfer"  target=""&gt;债权转让&lt;/a&gt;\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;a href="/index.php?ctl=tool"  target=""&gt;工具箱&lt;/a&gt;\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;a href="/index.php?ctl=deals&amp;act=about"  target=""&gt;关于理财&lt;/a&gt;\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;a href="/index.php?ctl=belender"  target=""&gt;成为理财人&lt;/a&gt;\r\n\t\t\t\t\t\t\t\t\t\t\t\t&lt;/div&gt;\r\n\t\t\t\t\t\t\t\t\t\t\t&lt;/li&gt;\r\n\t\t\t\t\t\t\t\t\t&lt;li class=" jcur ml5 bdr3 pr" rel=\'3\'&gt;\r\n\t\t\t\t\t\t&lt;a href="/index.php?ctl=borrow" target="" class="pr20"&gt;我要借款 &lt;i class="iconfont"&gt;&amp;#xe61c;&lt;/i&gt;&lt;/a&gt;\r\n\t\t\t\t\t\t                        &lt;div class="sub_main_nav ps hide"&gt;\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;a href="/index.php?ctl=borrow&amp;act=aboutborrow"  target=""&gt;贷款说明&lt;/a&gt;\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;a href="/index.php?ctl=borrow&amp;act=creditswitch"  target=""&gt;信用认证&lt;/a&gt;\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;a href="/index.php?ctl=borrow"  target=""&gt;申请贷款&lt;/a&gt;\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;a href="/index.php?ctl=deal_msgboard"  target=""&gt;登记借款&lt;/a&gt;\r\n\t\t\t\t\t\t\t\t\t\t\t\t&lt;/div&gt;\r\n\t\t\t\t\t\t\t\t\t\t\t&lt;/li&gt;\r\n\t\t\t\t\t\t\t\t\t&lt;li class=" jcur ml5 bdr3 pr" rel=\'4\'&gt;\r\n\t\t\t\t\t\t&lt;a href="/member.php?ctl=uc_center" target="" class="pr20"&gt;我的p2p信贷 &lt;i class="iconfont"&gt;&amp;#xe61c;&lt;/i&gt;&lt;/a&gt;\r\n\t\t\t\t\t\t                        &lt;div class="sub_main_nav ps hide"&gt;\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;a href="/member.php?ctl=uc_center"  target=""&gt;我的主页&lt;/a&gt;\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;a href="/member.php?ctl=uc_deal&amp;act=refund"  target=""&gt;贷款管理&lt;/a&gt;\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;a href="/member.php?ctl=uc_invest"  target=""&gt;投标管理&lt;/a&gt;\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;a href="/member.php?ctl=uc_account"  target=""&gt;个人设置&lt;/a&gt;\r\n\t\t\t\t\t\t\t\t\t\t\t\t&lt;/div&gt;\r\n\t\t\t\t\t\t\t\t\t\t\t&lt;/li&gt;\r\n\t\t\t\t\t\t\t\t\t&lt;li class=" jcur ml5 bdr3 pr" rel=\'5\'&gt;\r\n\t\t\t\t\t\t&lt;a href="/index.php?ctl=guarantee" target="" class="pr20"&gt;安全保障 &lt;i class="iconfont"&gt;&amp;#xe61c;&lt;/i&gt;&lt;/a&gt;\r\n\t\t\t\t\t\t                        &lt;div class="sub_main_nav ps hide"&gt;\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;a href="/index.php?ctl=guarantee&amp;act=detail&amp;id=8"  target=""&gt;本金保障&lt;/a&gt;\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;a href="/index.php?ctl=guarantee&amp;act=detail&amp;id=9"  target=""&gt;交易安全保障&lt;/a&gt;\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;a href="/index.php?ctl=guarantee&amp;act=detail&amp;id=10"  target=""&gt;贷款审核与保障&lt;/a&gt;\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;a href="/index.php?ctl=guarantee&amp;act=detail&amp;id=11"  target=""&gt;网上理财安全建议&lt;/a&gt;\r\n\t\t\t\t\t\t\t\t\t\t\t\t&lt;/div&gt;\r\n\t\t\t\t\t\t\t\t\t\t\t&lt;/li&gt;\r\n\t\t\t\t\t\t\t\t\t&lt;li class="  ml5 bdr3 pr" rel=\'27\'&gt;\r\n\t\t\t\t\t\t&lt;a href="/index.php?ctl=score" target="" &gt;积分商城 &lt;/a&gt;\r\n\t\t\t\t\t\t\t\t\t\t\t&lt;/li&gt;\r\n\t\t\t\t\t\t\t\t\t&lt;li class="  ml5 bdr3 pr" rel=\'50\'&gt;\r\n\t\t\t\t\t\t&lt;a href="/licai.php" target="_blank" &gt;理财中心 &lt;/a&gt;\r\n\t\t\t\t\t\t\t\t\t\t\t&lt;/li&gt;\r\n\t\t\t\t\t\t\t&lt;/ul&gt;\r\n\t\t\t&lt;!--加载菜单END--&gt;\r\n\t\t&lt;/div&gt;\r\n\t&lt;/div&gt;\r\n&lt;/div&gt;\r\n&lt;!----&gt;\r\n\r\n\t\t\t\t\t\t\r\n&lt;div class="wrap"&gt; \r\n&lt;meta http-equiv="refresh" content="3;URL=/member.php?ctl=uc_deal_quota" /&gt;\r\n&lt;div class="msg_box success_box mt10 mb10"&gt;\r\n\t\t\t\t\t\t\t&lt;h2&gt;\r\n\t\t\t\t\t\t\t\t&lt;div class="icon"&gt;&lt;i&gt;&lt;/i&gt;&lt;/div&gt;\r\n\t\t\t\t\t\t\t\t&lt;span class="tip"&gt;操作成功&lt;/span&gt;\r\n\t\t\t\t\t\t\t&lt;/h2&gt;\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\t\t&lt;div class="notice"&gt;\r\n\t\t\t\t\t\t\t\t&lt;p&gt;\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t提交成功，等待管理员审核\t\r\n\t\t\t\t\t\t\t\t&lt;/p&gt;\r\n\t\t\t\t\t\t\t\t&lt;p&gt;\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t系统将在 3 秒后自动跳转&lt;a href="/member.php?ctl=uc_deal_quota"&gt;这里&lt;/a&gt; 跳转\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/p&gt;\r\n\t\t\t\t\t\t\t&lt;/div&gt;\r\n\r\n\r\n&lt;/div&gt;\r\n&lt;/div&gt;\t\t\t\t\t\t\r\n&lt;div style="background:#f2f2f2; padding:30px;text-align: center"&gt;\r\n\t&lt;div style="text-align:right;"&gt;\r\n\t联系我们：test@test.com&amp;nbsp; &amp;nbsp;深圳市xxx科技有限公司\r\n&lt;/div&gt;\r\n&lt;div style="text-align:right;"&gt;\r\n\t&amp;copy; 2013 p2p信贷 All rights reserved&lt;br /&gt;\r\n\t&lt;p style="color:#666666;font-family:\'Microsoft YaHei\';text-align:right;background-color:#F6F6F6;"&gt;\r\n\t\tQQ：88888888\r\n\t&lt;/p&gt;\r\n&lt;/div&gt; \r\n&lt;/div&gt;'
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_2' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_success001</div></td>
+    <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
+</tr>
+
+<tr id='total_row' class="text-center active">
+    <td>总计</td>
+    <td>2</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>通过率：50.00%</td>
+</tr>
+</table>
+
+<div id='ending'>&nbsp;</div>
+    <div style=" position:fixed;right:50px; bottom:30px; width:20px; height:20px;cursor:pointer">
+    <a href="#"><span class="glyphicon glyphicon-eject" style = "font-size:30px;" aria-hidden="true">
+    </span></a></div>
+    
+
+</body>
+</html>
